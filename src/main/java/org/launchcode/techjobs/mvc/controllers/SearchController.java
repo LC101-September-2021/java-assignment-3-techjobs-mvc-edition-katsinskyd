@@ -11,19 +11,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 
-import static org.launchcode.techjobs.mvc.controllers.ListController.columnChoices;
-
-
 /**
  * Created by LaunchCode
  */
 @Controller
 @RequestMapping("search")
-public class SearchController {
+public class SearchController extends TechJobsController {
 
     @GetMapping(value = "")
     public String search(Model model) {
-        model.addAttribute("columns", columnChoices);
         model.addAttribute("searchTypeChecked", "all");
         return "search";
     }
@@ -40,7 +36,6 @@ public class SearchController {
             model.addAttribute("title", "Jobs with " + columnChoices.get(searchType) + ": " + searchTerm);
         }
         model.addAttribute("jobs", jobs);
-        model.addAttribute("columns", columnChoices);
         model.addAttribute("searchTypeChecked", searchType);
         return "search";
     }
